@@ -5600,6 +5600,7 @@ ready:
 		}
 	}
 
+    printf("%x\n",mp);
     printf("%s\n","IS LEAF");
     //printf("%s\n",mp);
 	if (!IS_LEAF(mp)) {
@@ -5608,8 +5609,7 @@ ready:
 		    mp->mp_flags));
 		mc->mc_txn->mt_flags |= MDB_TXN_ERROR;
 		printf("%s\n","CORRUPTED???");
-		return rc;
-		//return MDB_CORRUPTED;
+		return MDB_CORRUPTED;
 	}
 
 	DPRINTF(("found leaf page %"Z"u for key [%s]", mp->mp_pgno,
@@ -6207,7 +6207,7 @@ mdb_cursor_set(MDB_cursor *mc, MDB_val *key, MDB_val *data,
 		return rc;
 
 	mp = mc->mc_pg[mc->mc_top];
-	//mdb_cassert(mc, IS_LEAF(mp));
+	mdb_cassert(mc, IS_LEAF(mp));
 
 set2:
 	leaf = mdb_node_search(mc, key, exactp);
