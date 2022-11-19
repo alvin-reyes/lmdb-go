@@ -5701,7 +5701,7 @@ mdb_page_search(MDB_cursor *mc, MDB_val *key, int flags)
 			return MDB_NOTFOUND;
 		}
 	}
-
+    printf("%s\n","mdb_cassert");
 	mdb_cassert(mc, root > 1);
 	if (!mc->mc_pg[0] || mc->mc_pg[0]->mp_pgno != root)
 		if ((rc = mdb_page_get(mc, root, &mc->mc_pg[0], NULL)) != 0)
@@ -5720,7 +5720,7 @@ mdb_page_search(MDB_cursor *mc, MDB_val *key, int flags)
 
 	if (flags & MDB_PS_ROOTONLY)
 		return MDB_SUCCESS;
-
+    printf("%s\n","mdb_page_search_root");
 	return mdb_page_search_root(mc, key, flags);
 }
 
