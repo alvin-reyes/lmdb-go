@@ -6367,8 +6367,8 @@ mdb_cursor_get(MDB_cursor *mc, MDB_val *key, MDB_val *data,
 	int		 exact = 0;
 	int		 (*mfunc)(MDB_cursor *mc, MDB_val *key, MDB_val *data);
 
-    printf("mdb_cursor_get");
-    DPRINTF("mdb_cursor_get");
+    printf("%s\n","mdb_cursor_get");
+
 	if (mc == NULL)
 		return EINVAL;
 
@@ -6490,7 +6490,7 @@ fetchm:
 	case MDB_NEXT:
 	case MDB_NEXT_DUP:
 	case MDB_NEXT_NODUP:
-	    printf("next-----");
+	    printf("%s\n","next-----");
 		rc = mdb_cursor_next(mc, key, data, op);
 		break;
 	case MDB_PREV:
