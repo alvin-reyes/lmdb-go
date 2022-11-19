@@ -5649,19 +5649,23 @@ mdb_page_search(MDB_cursor *mc, MDB_val *key, int flags)
 {
 	int		 rc;
 	pgno_t		 root;
-
+    printf("%s\n","mdb_page_search")
 	/* Make sure the txn is still viable, then find the root from
 	 * the txn's db table and set it as the root of the cursor's stack.
 	 */
 	if (mc->mc_txn->mt_flags & MDB_TXN_BLOCKED) {
+	    printf("%s\n","MDB_TXN_BLOCKED");
 		DPUTS("transaction may not be used now");
 		return MDB_BAD_TXN;
 	} else {
+    	printf("%s\n","mdb_page_search else");
 		/* Make sure we're using an up-to-date root */
 		if (*mc->mc_dbflag & DB_STALE) {
+		        printf("%s\n","DB_STALE");
 				MDB_cursor mc2;
 				if (TXN_DBI_CHANGED(mc->mc_txn, mc->mc_dbi))
 					return MDB_BAD_DBI;
+                printf("%s\n","mdb_cursor_init");
 				mdb_cursor_init(&mc2, mc->mc_txn, MAIN_DBI, NULL);
 				rc = mdb_page_search(&mc2, &mc->mc_dbx->md_name, 0);
 				if (rc)
@@ -6288,6 +6292,7 @@ mdb_cursor_first(MDB_cursor *mc, MDB_val *key, MDB_val *data)
 		mc->mc_xcursor->mx_cursor.mc_flags &= ~(C_INITIALIZED|C_EOF);
 
 	if (!(mc->mc_flags & C_INITIALIZED) || mc->mc_top) {
+	    printf("%s\n","mdb_page_search");
 		rc = mdb_page_search(mc, NULL, MDB_PS_FIRST);
 		if (rc != MDB_SUCCESS)
 			return rc;
