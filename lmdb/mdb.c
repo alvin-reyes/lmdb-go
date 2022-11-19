@@ -5601,13 +5601,13 @@ ready:
 	}
 
     printf("%s\n","IS LEAF");
-    printf("%s\n",mp);
+    //printf("%s\n",mp);
 	if (!IS_LEAF(mp)) {
 		DPRINTF(("internal error, index points to a %02X page!?",
 		    mp->mp_flags));
 		mc->mc_txn->mt_flags |= MDB_TXN_ERROR;
 		printf("%s\n","CORRUPTED???");
-		return MDB_CORRUPTED;
+		//return MDB_CORRUPTED;
 	}
 
 	DPRINTF(("found leaf page %"Z"u for key [%s]", mp->mp_pgno,
