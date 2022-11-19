@@ -13,7 +13,7 @@ func main() {
 	if err != nil {
 
 	}
-	env.Open("error_data", lmdb.WriteMap, 0664)
+	env.Open("error", lmdb.WriteMap, 0664)
 
 	//var database lmdb.DBI
 	err = env.Update(func(txn *lmdb.Txn) (err error) {

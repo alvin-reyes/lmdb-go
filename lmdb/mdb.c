@@ -6368,6 +6368,7 @@ mdb_cursor_get(MDB_cursor *mc, MDB_val *key, MDB_val *data,
 	int		 (*mfunc)(MDB_cursor *mc, MDB_val *key, MDB_val *data);
 
     printf("mdb_cursor_get");
+    DPRINTF("mdb_cursor_get");
 	if (mc == NULL)
 		return EINVAL;
 
