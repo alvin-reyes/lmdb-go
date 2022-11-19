@@ -5601,6 +5601,7 @@ ready:
 	}
 
     printf("%s\n","IS LEAF");
+    printf("%s\n",mp);
 	if (!IS_LEAF(mp)) {
 		DPRINTF(("internal error, index points to a %02X page!?",
 		    mp->mp_flags));
