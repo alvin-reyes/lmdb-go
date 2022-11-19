@@ -5917,8 +5917,10 @@ mdb_cursor_next(MDB_cursor *mc, MDB_val *key, MDB_val *data, MDB_cursor_op op)
 	if ((mc->mc_flags & C_DEL && op == MDB_NEXT_DUP))
 		return MDB_NOTFOUND;
 
-	if (!(mc->mc_flags & C_INITIALIZED))
+	if (!(mc->mc_flags & C_INITIALIZED)) {
+	    printf("%s\n","mdb_cursor_first");
 		return mdb_cursor_first(mc, key, data);
+    }
 
 	mp = mc->mc_pg[mc->mc_top];
 
@@ -6281,7 +6283,7 @@ mdb_cursor_first(MDB_cursor *mc, MDB_val *key, MDB_val *data)
 {
 	int		 rc;
 	MDB_node	*leaf;
-
+    printf("%s\n","mdb_cursor_first");
 	if (mc->mc_xcursor)
 		mc->mc_xcursor->mx_cursor.mc_flags &= ~(C_INITIALIZED|C_EOF);
 
@@ -6290,8 +6292,9 @@ mdb_cursor_first(MDB_cursor *mc, MDB_val *key, MDB_val *data)
 		if (rc != MDB_SUCCESS)
 			return rc;
 	}
+	printf("%s\n","IS_LEAF");
 	mdb_cassert(mc, IS_LEAF(mc->mc_pg[mc->mc_top]));
-
+    printf("%s\n","NODEPTR");
 	leaf = NODEPTR(mc->mc_pg[mc->mc_top], 0);
 	mc->mc_flags |= C_INITIALIZED;
 	mc->mc_flags &= ~C_EOF;
@@ -6315,7 +6318,7 @@ mdb_cursor_first(MDB_cursor *mc, MDB_val *key, MDB_val *data)
 		if ((rc = mdb_node_read(mc, leaf, data)) != MDB_SUCCESS)
 			return rc;
 	}
-
+    printf("%s\n","MDB_GET_KEY");
 	MDB_GET_KEY(leaf, key);
 	return MDB_SUCCESS;
 }
