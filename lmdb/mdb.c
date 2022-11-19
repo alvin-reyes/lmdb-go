@@ -5543,7 +5543,7 @@ mdb_page_search_root(MDB_cursor *mc, MDB_val *key, int flags)
 		MDB_node	*node;
 		indx_t		i;
 
-		DPRINTF(("branch page %"Z"u has %u keys", mp->mp_pgno, NUMKEYS(mp)));
+		DPRINTF(("branch page %"Z"u has %u keys\n", mp->mp_pgno, NUMKEYS(mp)));
 		/* Don't assert on branch pages in the FreeDB. We can get here
 		 * while in the process of rebalancing a FreeDB branch page; we must
 		 * let that proceed. ITS#8336
@@ -5607,6 +5607,8 @@ ready:
 	    printf("internal error, index points to a %02X page!?",mp->mp_flags);
 		DPRINTF(("internal error, index points to a %02X page!?",
 		    mp->mp_flags));
+        printf("%s\n",mc);
+        printf("%s\n",mc->mc_txn);
 		mc->mc_txn->mt_flags |= MDB_TXN_ERROR;
 		printf("%s\n","CORRUPTED???");
 		return MDB_CORRUPTED;
