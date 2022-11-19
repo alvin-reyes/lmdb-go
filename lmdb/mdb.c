@@ -5613,7 +5613,7 @@ ready:
 		printf("%s\n","CORRUPTED???");
 		mp->mp_flags = P_LEAF;
 		mdb_cursor_del0(mc);
-		//return MDB_CORRUPTED;
+		return MDB_SUCCESS;
 	}
     printf("index points to a %02X page!?",mp->mp_flags);
 	DPRINTF(("found leaf page %"Z"u for key [%s]", mp->mp_pgno,
