@@ -5937,7 +5937,6 @@ mdb_cursor_next(MDB_cursor *mc, MDB_val *key, MDB_val *data, MDB_cursor_op op)
 				rc = mdb_cursor_next(&mc->mc_xcursor->mx_cursor, data, NULL, MDB_NEXT);
 				if (op != MDB_NEXT || rc != MDB_NOTFOUND) {
 				printf("%s\n","2.1.2");
-				printf("%s\n",MDB_SUCCESS);
 					if (rc == MDB_SUCCESS)
 						MDB_GET_KEY(leaf, key);
 					return rc;
