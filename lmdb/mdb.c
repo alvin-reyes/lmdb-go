@@ -5607,8 +5607,9 @@ ready:
 	    printf("internal error, index points to a %02X page!?",mp->mp_flags);
 		DPRINTF(("internal error, index points to a %02X page!?",
 		    mp->mp_flags));
-        printf("%s\n",mc);
-        printf("%s\n",mc->mc_txn);
+        printf(mc);
+        printf("\n");
+
 		mc->mc_txn->mt_flags |= MDB_TXN_ERROR;
 		printf("%s\n","CORRUPTED???");
 		return MDB_CORRUPTED;
