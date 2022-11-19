@@ -5538,6 +5538,7 @@ mdb_page_search_root(MDB_cursor *mc, MDB_val *key, int flags)
 	int rc;
 	DKBUF;
 
+    printf("%s\n","mdb_page_search_root");
 	while (IS_BRANCH(mp)) {
 		MDB_node	*node;
 		indx_t		i;
@@ -5549,8 +5550,9 @@ mdb_page_search_root(MDB_cursor *mc, MDB_val *key, int flags)
 		 */
 		mdb_cassert(mc, !mc->mc_dbi || NUMKEYS(mp) > 1);
 		DPRINTF(("found index 0 to page %"Z"u", NODEPGNO(NODEPTR(mp, 0))));
-
+        printf("%s\n","IS_BRANCH(mp)");
 		if (flags & (MDB_PS_FIRST|MDB_PS_LAST)) {
+		printf("%s\n","IS_BRANCH(mp) if");
 			i = 0;
 			if (flags & MDB_PS_LAST) {
 				i = NUMKEYS(mp) - 1;
@@ -5564,6 +5566,7 @@ mdb_page_search_root(MDB_cursor *mc, MDB_val *key, int flags)
 				}
 			}
 		} else {
+		printf("%s\n","IS_BRANCH(mp) else");
 			int	 exact;
 			node = mdb_node_search(mc, key, &exact);
 			if (node == NULL)
@@ -5580,26 +5583,29 @@ mdb_page_search_root(MDB_cursor *mc, MDB_val *key, int flags)
 
 		mdb_cassert(mc, i < NUMKEYS(mp));
 		node = NODEPTR(mp, i);
-
+        printf("%s\n","mdb_page_get");
 		if ((rc = mdb_page_get(mc, NODEPGNO(node), &mp, NULL)) != 0)
 			return rc;
-
+        printf("%s\n","mdb_cursor_push");
 		mc->mc_ki[mc->mc_top] = i;
 		if ((rc = mdb_cursor_push(mc, mp)))
 			return rc;
 
 ready:
 		if (flags & MDB_PS_MODIFY) {
+		    printf("%s\n","mdb_page_touch");
 			if ((rc = mdb_page_touch(mc)) != 0)
 				return rc;
 			mp = mc->mc_pg[mc->mc_top];
 		}
 	}
 
+    printf("%s\n","IS LEAF");
 	if (!IS_LEAF(mp)) {
 		DPRINTF(("internal error, index points to a %02X page!?",
 		    mp->mp_flags));
 		mc->mc_txn->mt_flags |= MDB_TXN_ERROR;
+		printf("%s\n","CORRUPTED???");
 		return MDB_CORRUPTED;
 	}
 
