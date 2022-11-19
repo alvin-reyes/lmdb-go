@@ -5618,7 +5618,7 @@ ready:
 	    key ? DKEY(key) : "null"));
 	mc->mc_flags |= C_INITIALIZED;
 	mc->mc_flags &= ~C_EOF;
-
+    printf("%s\n","return MDB_SUCCESS");
 	return MDB_SUCCESS;
 }
 
