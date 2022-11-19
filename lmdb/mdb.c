@@ -5649,7 +5649,7 @@ mdb_page_search(MDB_cursor *mc, MDB_val *key, int flags)
 {
 	int		 rc;
 	pgno_t		 root;
-    printf("%s\n","mdb_page_search")
+    printf("%s\n","mdb_page_search");
 	/* Make sure the txn is still viable, then find the root from
 	 * the txn's db table and set it as the root of the cursor's stack.
 	 */
