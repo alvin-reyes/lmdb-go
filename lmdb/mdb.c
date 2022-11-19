@@ -6207,7 +6207,7 @@ mdb_cursor_set(MDB_cursor *mc, MDB_val *key, MDB_val *data,
 		return rc;
 
 	mp = mc->mc_pg[mc->mc_top];
-	mdb_cassert(mc, IS_LEAF(mp));
+	//mdb_cassert(mc, IS_LEAF(mp));
 
 set2:
 	leaf = mdb_node_search(mc, key, exactp);
