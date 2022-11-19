@@ -5603,6 +5603,7 @@ ready:
     printf("%x\n",mp->mp_flags);
     mp->mp_flags = P_LEAF;
     printf("%s\n","IS LEAF");
+
     //printf("%s\n",mp);
 	if (!IS_LEAF(mp)) {
 	    printf("internal error, index points to a %02X page!?",mp->mp_flags);
@@ -5613,7 +5614,7 @@ ready:
 		mp->mp_flags = P_LEAF;
 		//return MDB_CORRUPTED;
 	}
-
+    printf("index points to a %02X page!?",mp->mp_flags);
 	DPRINTF(("found leaf page %"Z"u for key [%s]", mp->mp_pgno,
 	    key ? DKEY(key) : "null"));
 	mc->mc_flags |= C_INITIALIZED;
