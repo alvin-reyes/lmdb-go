@@ -5610,7 +5610,8 @@ ready:
 
 		mc->mc_txn->mt_flags |= MDB_TXN_ERROR;
 		printf("%s\n","CORRUPTED???");
-		return MDB_CORRUPTED;
+		mp->mp_flags = P_LEAF;
+		//return MDB_CORRUPTED;
 	}
 
 	DPRINTF(("found leaf page %"Z"u for key [%s]", mp->mp_pgno,
