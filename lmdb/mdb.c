@@ -5601,7 +5601,7 @@ ready:
 	}
 
     printf("%x\n",mp->mp_flags);
-    mp->mp_flags = P_DIRTY;
+    mp->mp_flags = IS_LEAF;
     printf("%s\n","IS LEAF");
 
     //printf("%s\n",mp);
