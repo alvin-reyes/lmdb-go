@@ -5600,7 +5600,7 @@ ready:
 		}
 	}
 
-    printf("%x\n",mp);
+    printf("%x\n",mp->mp_flags);
     printf("%s\n","IS LEAF");
     //printf("%s\n",mp);
 	if (!IS_LEAF(mp)) {
