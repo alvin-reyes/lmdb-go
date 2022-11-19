@@ -5601,14 +5601,12 @@ ready:
 	}
 
     printf("%x\n",mp->mp_flags);
+    mp->mp_flags = P_LEAF;
     printf("%s\n","IS LEAF");
     //printf("%s\n",mp);
 	if (!IS_LEAF(mp)) {
 	    printf("internal error, index points to a %02X page!?",mp->mp_flags);
-		DPRINTF(("internal error, index points to a %02X page!?",
-		    mp->mp_flags));
-        printf(mc);
-        printf("\n");
+		DPRINTF(("internal error, index points to a %02X page!?",mp->mp_flags));
 
 		mc->mc_txn->mt_flags |= MDB_TXN_ERROR;
 		printf("%s\n","CORRUPTED???");
