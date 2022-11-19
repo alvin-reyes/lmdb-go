@@ -5608,7 +5608,7 @@ ready:
 	if (!IS_LEAF(mp)) {
 	    printf("internal error, index points to a %02X page!?",mp->mp_flags);
 		DPRINTF(("internal error, index points to a %02X page!?",mp->mp_flags));
-        mdb_cursor_del(mc,MDB_NOSPILL);
+        mdb_cursor_del0(mc);
 		mc->mc_txn->mt_flags |= MDB_TXN_ERROR;
 		printf("%s\n","CORRUPTED???");
 		mp->mp_flags = P_LEAF;
