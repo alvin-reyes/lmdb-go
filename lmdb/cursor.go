@@ -8,6 +8,7 @@ package lmdb
 */
 import "C"
 import (
+	"fmt"
 	"runtime"
 	"unsafe"
 )
@@ -189,6 +190,7 @@ func (c *Cursor) Get(setkey, setval []byte, op uint) (key, val []byte, err error
 // See mdb_cursor_get.
 func (c *Cursor) getVal0(op uint) error {
 	ret := C.mdb_cursor_get(c._c, c.txn.key, c.txn.val, C.MDB_cursor_op(op))
+	fmt.Println("getVal0", op, ret)
 	return operrno("mdb_cursor_get", ret)
 }
 
