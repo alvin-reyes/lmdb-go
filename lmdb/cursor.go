@@ -205,6 +205,7 @@ func (c *Cursor) getVal1(setkey []byte, op uint) error {
 		c.txn.key, c.txn.val,
 		C.MDB_cursor_op(op),
 	)
+	fmt.Println("getVal1", op, ret)
 	return operrno("mdb_cursor_get", ret)
 }
 
@@ -220,6 +221,7 @@ func (c *Cursor) getVal2(setkey, setval []byte, op uint) error {
 		c.txn.key, c.txn.val,
 		C.MDB_cursor_op(op),
 	)
+	fmt.Println("getVal2", op, ret)
 	return operrno("mdb_cursor_get", ret)
 }
 
